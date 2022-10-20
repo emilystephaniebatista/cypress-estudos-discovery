@@ -1,6 +1,23 @@
-import SignupPage from '../pages/SignupPage'
+import signup from '../pages/SignupPage'
 
 describe('Cadastro', ()=>{
+
+    //    before(function(){
+    //       cy.log('Tudo aqui é executado uma unica vez ANTES de TODOS os casos de testes')
+    //   })
+
+    //    before(function(){
+    //       cy.log('Tudo aqui é executado sempre ANTES de CADA caso de teste')
+    //   })
+
+    //   after(function(){
+    //       cy.log('Tudo aqui é executado uma unica vez DEPOIS de TODOS os casos de testes')
+    //   })
+
+    //    after(function(){
+    //       cy.log('Tudo aqui é executado sempre DEPOIS de CADA caso de teste')
+    //   })
+
     it('Usuário deve se tornar um entregador', ()=>{
 
         var deliver = {
@@ -21,8 +38,6 @@ describe('Cadastro', ()=>{
             cnh: 'cnh-digital.jpg'
         }
 
-        var signup = new SignupPage()
-
         signup.go()
         signup.fillForm(deliver)
         signup.submit()
@@ -31,37 +46,35 @@ describe('Cadastro', ()=>{
         signup.modalContentShouldBe(expectedMessage)        
 
     })
-})
-
-it('CPF incorreto', ()=>{
-    cy.viewport(1440, 900)
-    cy.visit('https://buger-eats.vercel.app')
+    it('CPF incorreto', ()=>{
+        cy.viewport(1440, 900)
+        cy.visit('https://buger-eats.vercel.app')
+        
+        cy.get('a[href="/deliver"]').click()
+        cy.get('#page-deliver form h1').should('have.text', 'Cadastre-se para  fazer entregas')
     
-    cy.get('a[href="/deliver"]').click()
-    cy.get('#page-deliver form h1').should('have.text', 'Cadastre-se para  fazer entregas')
-
-    var deliver = {
-        name: 'Emily Stephanie',
-        cpf: 'kedsoidis3333',
-        email: 'emily@hotmail.com',
-        whatsapp: '14999999999',
-        address:{
-            postalcode: '17533540',
-            street: 'Rua Gerson RIbeiro',
-            number: '1000',
-            details: 'Casa',
-            district: 'Residencial Professor Luiz Rossi (Padre Nóbrega)',
-            city_state: 'Marília/SP'
-
-        },
-        delivery_method: 'Moto',
-        cnh: 'cnh-digital.jpg'
-
-    }
-    var signup = new SignupPage()
-
-        signup.go()
-        signup.fillForm(deliver)
-        signup.submit()
-        signup.alertMessageShouldBe('Oops! CPF inválido')
+        var deliver = {
+            name: 'Emily Stephanie',
+            cpf: 'kedsoidis3333',
+            email: 'emily@hotmail.com',
+            whatsapp: '14999999999',
+            address:{
+                postalcode: '17533540',
+                street: 'Rua Gerson RIbeiro',
+                number: '1000',
+                details: 'Casa',
+                district: 'Residencial Professor Luiz Rossi (Padre Nóbrega)',
+                city_state: 'Marília/SP'
+    
+            },
+            delivery_method: 'Moto',
+            cnh: 'cnh-digital.jpg'
+    
+        }
+            signup.go()
+            signup.fillForm(deliver)
+            signup.submit()
+            signup.alertMessageShouldBe('Oops! CPF inválido')
+    })
 })
+
