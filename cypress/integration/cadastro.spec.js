@@ -6,45 +6,46 @@ describe('Cadastro', ()=>{
         cy.get('a[href="/deliver"]').click()
         cy.get('#page-deliver form h1').should('have.text', 'Cadastre-se para  fazer entregas')
 
-        var entregador = {
-            nome: 'Emily Stephanie',
+        var deliver = {
+            name: 'Emily Stephanie',
             cpf: '00000000141',
             email: 'emily@hotmail.com',
             whatsapp: '14999999999',
-            endereco:{
-                cep: '17533540',
-                rua: 'Rua Gerson RIbeiro',
-                numero: '1000',
-                complemento: 'Casa',
-                bairro: 'Residencial Professor Luiz Rossi (Padre Nóbrega)',
-                cidade_uf: 'Marília/SP'
+            address:{
+                postalcode: '17533540',
+                street: 'Rua Gerson RIbeiro',
+                number: '1000',
+                details: 'Casa',
+                district: 'Residencial Professor Luiz Rossi (Padre Nóbrega)',
+                city_state: 'Marília/SP'
 
             },
-            metodo_entrega: 'Moto',
+            delivery_method: 'Moto',
             cnh: 'cnh-digital.jpg'
 
         }
-        //preenchendo os valores dos campos-clicando no botão de busca de cep
-        cy.get('input[name="name"]').type(entregador.nome)
-        cy.get('input[name="cpf"]').type(entregador.cpf)
-        cy.get('input[name="email"]').type(entregador.email)
-        cy.get('input[name="whatsapp"]').type(entregador.whatsapp)
 
-        cy.get('input[name="postalcode"]').type(entregador.endereco.cep)
+        //preenchendo os valores dos campos-clicando no botão de busca de cep
+        cy.get('input[name="name"]').type(deliver.name)
+        cy.get('input[name="cpf"]').type(deliver.cpf)
+        cy.get('input[name="email"]').type(deliver.email)
+        cy.get('input[name="whatsapp"]').type(deliver.whatsapp)
+
+        cy.get('input[name="postalcode"]').type(deliver.address.postalcode)
         cy.get('input[type=button][value="Buscar CEP"]').click()
-        cy.get('input[name="address-number"]').type(entregador.endereco.numero)
-        cy.get('input[name="address-details"]').type(entregador.endereco.complemento)
+        cy.get('input[name="address-number"]').type(deliver.address.number)
+        cy.get('input[name="address-details"]').type(deliver.address.details)
 
         //validando os campos que foram preenchidos do endereço
-        cy.get('input[name="address"]').should('have.value', entregador.endereco.rua)
-        cy.get('input[name="district"]').should('have.value', entregador.endereco.bairro)
-        cy.get('input[name="city-uf"]').should('have.value', entregador.endereco.cidade_uf)
+        cy.get('input[name="address"]').should('have.value', deliver.address.street)
+        cy.get('input[name="district"]').should('have.value', deliver.address.district)
+        cy.get('input[name="city-uf"]').should('have.value', deliver.address.city_state)
 
         //Para ir o valor da moto direto no método da entrega tem que inserir em: metodo_entrega
-        cy.contains('.delivery-method li', entregador.metodo_entrega).click()
-        
+        cy.contains('.delivery-method li', deliver.delivery_method).click()
+
         //Para fazer upload de imagens
-        cy.get('input[accept^="image"]').attachFile('/images/' + entregador.cnh)
+        cy.get('input[accept^="image"]').attachFile('/images/' + deliver.cnh)
         
         //clicar no botão
         cy.get('form button[type="submit"]').click()
@@ -64,49 +65,49 @@ it('CPF incorreto', ()=>{
     cy.get('a[href="/deliver"]').click()
     cy.get('#page-deliver form h1').should('have.text', 'Cadastre-se para  fazer entregas')
 
-    var entregador = {
-        nome: 'Emily Stephanie',
-        cpf: '00000000141AA****',
+    var deliver = {
+        name: 'Emily Stephanie',
+        cpf: 'kedsoidis3333',
         email: 'emily@hotmail.com',
         whatsapp: '14999999999',
-        endereco:{
-            cep: '17533540',
-            rua: 'Rua Gerson RIbeiro',
-            numero: '1000',
-            complemento: 'Casa',
-            bairro: 'Residencial Professor Luiz Rossi (Padre Nóbrega)',
-            cidade_uf: 'Marília/SP'
+        address:{
+            postalcode: '17533540',
+            street: 'Rua Gerson RIbeiro',
+            number: '1000',
+            details: 'Casa',
+            district: 'Residencial Professor Luiz Rossi (Padre Nóbrega)',
+            city_state: 'Marília/SP'
 
         },
-        metodo_entrega: 'Moto',
+        delivery_method: 'Moto',
         cnh: 'cnh-digital.jpg'
 
     }
-    //preenchendo os valores dos campos-clicando no botão de busca de cep
-    cy.get('input[name="name"]').type(entregador.nome)
-    cy.get('input[name="cpf"]').type(entregador.cpf)
-    cy.get('input[name="email"]').type(entregador.email)
-    cy.get('input[name="whatsapp"]').type(entregador.whatsapp)
+     //preenchendo os valores dos campos-clicando no botão de busca de cep
+     cy.get('input[name="name"]').type(deliver.name)
+     cy.get('input[name="cpf"]').type(deliver.cpf)
+     cy.get('input[name="email"]').type(deliver.email)
+     cy.get('input[name="whatsapp"]').type(deliver.whatsapp)
 
-    cy.get('input[name="postalcode"]').type(entregador.endereco.cep)
-    cy.get('input[type=button][value="Buscar CEP"]').click()
-    cy.get('input[name="address-number"]').type(entregador.endereco.numero)
-    cy.get('input[name="address-details"]').type(entregador.endereco.complemento)
+     cy.get('input[name="postalcode"]').type(deliver.address.postalcode)
+     cy.get('input[type=button][value="Buscar CEP"]').click()
+     cy.get('input[name="address-number"]').type(deliver.address.number)
+     cy.get('input[name="address-details"]').type(deliver.address.details)
 
-    //validando os campos que foram preenchidos do endereço
-    cy.get('input[name="address"]').should('have.value', entregador.endereco.rua)
-    cy.get('input[name="district"]').should('have.value', entregador.endereco.bairro)
-    cy.get('input[name="city-uf"]').should('have.value', entregador.endereco.cidade_uf)
+     //validando os campos que foram preenchidos do endereço
+     cy.get('input[name="address"]').should('have.value', deliver.address.street)
+     cy.get('input[name="district"]').should('have.value', deliver.address.district)
+     cy.get('input[name="city-uf"]').should('have.value', deliver.address.city_state)
 
-    //Para ir o valor da moto direto no método da entrega tem que inserir em: metodo_entrega
-    cy.contains('.delivery-method li', entregador.metodo_entrega).click()
-    
-    //Para fazer upload de imagens
-    cy.get('input[accept^="image"]').attachFile('/images/' + entregador.cnh)
-    
-    //clicar no botão
-    cy.get('form button[type="submit"]').click()
+     //Para ir o valor da moto direto no método da entrega tem que inserir em: metodo_entrega
+     cy.contains('.delivery-method li', deliver.delivery_method).click()
+     
+     //Para fazer upload de imagens
+     cy.get('input[accept^="image"]').attachFile('/images/' + deliver.cnh)
+     
+     //clicar no botão
+     cy.get('form button[type="submit"]').click()
 
-    cy.get('.alert-error').should('have.text', 'Oops! CPF inválido')
+     cy.get('.alert-error').should('have.text', 'Oops! CPF inválido')
 
 })
