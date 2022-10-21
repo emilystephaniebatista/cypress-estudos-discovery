@@ -10,7 +10,7 @@ class SignupPage{
 
     fillForm(deliver){
         //preenchendo os valores dos campos-clicando no botão de busca de cep
-        cy.get('input[name="name"]').type(deliver.name)
+        cy.get('input[name="fullName"]').type(deliver.name)
         cy.get('input[name="cpf"]').type(deliver.cpf)
         cy.get('input[name="email"]').type(deliver.email)
         cy.get('input[name="whatsapp"]').type(deliver.whatsapp)
