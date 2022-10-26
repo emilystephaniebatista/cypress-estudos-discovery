@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-//var faker = require('faker')
+var cpf = require('gerador-validador-cpf')
 
 export default{
 
@@ -11,7 +11,7 @@ export default{
 
         var data = {
             name: `${firstname} ${lastname}`,
-            cpf: '00000000141',
+            cpf: cpf.generate(),
             //Para criar e-mail dinâmico
             email: faker.internet.email(firstname),
             whatsapp: '14999999999',
