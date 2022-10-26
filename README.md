@@ -11,3 +11,5 @@
 # Links úteis: https://fakerjs.dev/ -- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals
 
 # Para rodar em outros navegadores (precisa estar instalado na máquina o navegador): npx cypress run -b nomedonavegador
+
+# https://dashboard.cypress.io/projects/h2v98b/runs
